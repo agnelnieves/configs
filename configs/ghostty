@@ -1,0 +1,48 @@
+shell-integration-features = no-cursor
+
+cursor-style = underline
+
+theme = Cursor Dark
+
+window-padding-x=20
+
+window-padding-y=10
+window-padding-balance = true
+
+background-opacity = 0.85
+
+background-blur = 90
+
+macos-titlebar-style = transparent
+
+adjust-cell-height = 35%
+
+window-colorspace = "display-p3"
+
+mouse-scroll-multiplier = 2
+
+font-family = "GeistMono NFM"
+font-size = 19
+font-thicken = true
+
+adjust-cursor-thickness = 2
+
+adjust-cursor-height = 10
+
+gtk-quick-terminal-layer = overlay
+
+quick-terminal-screen = mouse
+
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+
+quick-terminal-animation-duration = 0
+
+quick-terminal-size = 100%,100%
+
+macos-titlebar-style = tabs
+
+# custom-shader = ~/.config/ghostty/shaders/matrix-hallway.glsl
+# To enable the shader, clone the repo and uncomment the line above:
+#   git clone https://github.com/sahaj-b/ghostty-cursor-shaders ~/.config/ghostty/shaders
+
+cursor-style = block

@@ -1,0 +1,47 @@
+function set_win_title(){
+    echo -ne "\033]0; YOUR_WINDOW_TITLE_HERE \007"
+}
+
+# ----- NVM
+export NVM_DIR="$HOME/.nvm"
+mkdir -p "$NVM_DIR"
+source "$(brew --prefix nvm)/nvm.sh"
+
+# --- STARSHIP
+eval "$(starship init zsh)"
+
+# --- GPG
+export GPG_TTY=$(tty)
+
+# --- eza (modern ls with icons)
+alias ls='eza --icons --group-directories-first'
+alias la='eza --icons -a --group-directories-first'
+alias ll='eza --icons -l --git --group-directories-first'
+alias lla='eza --icons -la --git --group-directories-first'
+alias lt='eza --icons --tree --git-ignore'
+
+# --- bat (syntax-highlighted cat)
+alias cat='bat'
+export BAT_THEME="Nord"
+
+# --- fzf (styled fuzzy history search)
+export FZF_DEFAULT_OPTS="
+  --color=bg:#141414,bg+:#2A2A2A,fg:#D8DEEA,fg+:#FFFFFF
+  --color=hl:#81A1C1,hl+:#88C0D0,info:#EBCB8B,prompt:#81A1C1
+  --color=pointer:#88C0D0,marker:#A3BE8C,spinner:#B48EAD,border:#2A2A2A
+  --border=rounded
+  --prompt='  '
+  --pointer=' '
+  --marker=' '"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# --- Machine-specific overrides (not tracked in dotfiles)
+[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+
+# --- zsh-autosuggestions (ghost text from history)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#505050"
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# --- zsh-syntax-highlighting (must be last)
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
