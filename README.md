@@ -15,6 +15,7 @@ A macOS dotfiles repo for a polished, dark-themed terminal setup. Configures **G
 | `configs/starship.toml` | [Starship](https://starship.rs) | Powerline pill-style prompt with git, runtime, and duration segments |
 | `configs/zshrc` | Zsh | Aliases, plugins, fzf styling, NVM setup |
 | `configs/claude-statusline.sh` | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | Statusline showing model, tokens, context usage, and session cost |
+| `configs/delta.gitconfig` | [Delta](https://github.com/dandavison/delta) | Beautiful syntax-highlighted git diffs with line numbers |
 | `install.sh` | Everything | One-command installer with backup and symlink support |
 
 ### CLI Tools
@@ -28,6 +29,7 @@ Installed automatically via Homebrew:
 - **[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)** — ghost-text completions from history
 - **[nvm](https://github.com/nvm-sh/nvm)** — Node.js version manager (auto-switches via `.nvmrc`)
 - **[jq](https://github.com/jqlang/jq)** — JSON processor (used by the Claude statusline)
+- **[delta](https://github.com/dandavison/delta)** — syntax-highlighted git diffs with line numbers and navigate mode
 
 ---
 
@@ -48,12 +50,13 @@ cd ~/configs
 
 This will:
 
-1. Install all Homebrew packages (starship, eza, bat, fzf, zsh plugins, nvm, jq)
+1. Install all Homebrew packages (starship, eza, bat, fzf, zsh plugins, nvm, jq, delta)
 2. Set up fzf shell integration
 3. Copy config files to their expected locations (`~/.zshrc`, `~/.config/starship.toml`, `~/.config/ghostty/config`)
-4. Back up any existing configs with a timestamped `.backup.*` suffix
-5. Create `~/.zshrc.local` for machine-specific secrets (not tracked in git)
-6. Install the Claude Code statusline into `~/.claude/`
+4. Configure delta as the git pager (via `git config --global include.path`)
+5. Back up any existing configs with a timestamped `.backup.*` suffix
+6. Create `~/.zshrc.local` for machine-specific secrets (not tracked in git)
+7. Install the Claude Code statusline into `~/.claude/`
 
 ### Install Flags
 
@@ -151,6 +154,12 @@ If you are an AI agent (Claude Code, Copilot, Cursor, etc.) working in this repo
 - Reads session JSON from stdin and outputs a single formatted line.
 - `SPEND_CAP` at the top controls the cost bar denominator. Default is `$50`.
 - Uses ANSI color codes for the progress bars (green/yellow/red thresholds). These are not Cursor Dark palette colors — they're standard terminal colors for at-a-glance readability.
+
+### Delta (`configs/delta.gitconfig`)
+
+- Included into `~/.gitconfig` via `include.path` — do not duplicate these settings in the user's global gitconfig.
+- `side-by-side` is off by default. Users can enable it with `git config --global delta.side-by-side true`.
+- `merge.conflictStyle = zdiff3` is set here. Don't override it elsewhere.
 
 ### General Rules
 

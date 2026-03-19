@@ -1,0 +1,23 @@
+# ─── Delta — beautiful git diffs ─────────────────────────────────────────────
+# https://github.com/dandavison/delta
+#
+# This file is included into ~/.gitconfig by the installer.
+# To include manually:  git config --global include.path ~/configs/configs/delta.gitconfig
+
+[core]
+    pager = delta
+
+[interactive]
+    diffFilter = delta --color-only
+
+[delta]
+    navigate = true
+    dark = true
+    line-numbers = true
+    side-by-side = false
+
+[merge]
+    conflictStyle = zdiff3
+
+[diff]
+    colorMoved = default

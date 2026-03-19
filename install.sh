@@ -52,7 +52,7 @@ fi
 
 # ─── 3. Brew packages ─────────────────────────────────────────────────────────
 info "Installing brew packages (already-installed ones will be skipped)..."
-PACKAGES="starship eza bat fzf zsh-syntax-highlighting zsh-autosuggestions nvm jq"
+PACKAGES="starship eza bat fzf zsh-syntax-highlighting zsh-autosuggestions nvm jq git-delta"
 run "brew install $PACKAGES"
 ok "Brew packages ready"
 
@@ -95,6 +95,24 @@ install_config() {
 install_config "$DOTFILES_DIR/configs/zshrc"       "$HOME/.zshrc"
 install_config "$DOTFILES_DIR/configs/starship.toml" "$HOME/.config/starship.toml"
 install_config "$DOTFILES_DIR/configs/ghostty"      "$HOME/.config/ghostty/config"
+
+# ─── 5b. Delta (git pager) ───────────────────────────────────────────────────
+info "Installing delta git config..."
+DELTA_CFG="$HOME/.config/delta/delta.gitconfig"
+install_config "$DOTFILES_DIR/configs/delta.gitconfig" "$DELTA_CFG"
+
+info "Adding git include for delta..."
+if $DRY_RUN; then
+  dry "Would add include.path $DELTA_CFG to ~/.gitconfig"
+else
+  CURRENT_INCLUDE="$(git config --global --get include.path "$DELTA_CFG" 2>/dev/null || true)"
+  if [[ -z "$CURRENT_INCLUDE" ]]; then
+    git config --global --add include.path "$DELTA_CFG"
+    ok "Added include.path → $DELTA_CFG"
+  else
+    skip "include.path already set for delta"
+  fi
+fi
 
 # ─── 6. .zshrc.local template ─────────────────────────────────────────────────
 info "Checking ~/.zshrc.local..."
