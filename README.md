@@ -12,6 +12,7 @@ A macOS dotfiles repo for a polished, dark-themed terminal setup. Configures **G
 | File | Configures | Purpose |
 |------|-----------|---------|
 | `configs/ghostty` | [Ghostty](https://ghostty.org) | GPU-accelerated terminal with transparency, blur, and quick-toggle |
+| `configs/rex.lua` | [Rex](https://www.superlogical.com/rex) | Terminal multiplexer keybinds: `shift+cmd+k` clears the terminal |
 | `configs/starship.toml` | [Starship](https://starship.rs) | Powerline pill-style prompt with git, runtime, and duration segments |
 | `configs/zshrc` | Zsh | Aliases, plugins, fzf styling, NVM setup |
 | `configs/claude-statusline.sh` | [Claude Code](https://docs.anthropic.com/en/docs/claude-code) | Statusline showing model, tokens, context usage, and session cost |
@@ -52,7 +53,7 @@ This will:
 
 1. Install all Homebrew packages (starship, eza, bat, fzf, zsh plugins, nvm, jq, delta)
 2. Set up fzf shell integration
-3. Copy config files to their expected locations (`~/.zshrc`, `~/.config/starship.toml`, `~/.config/ghostty/config`)
+3. Copy config files to their expected locations (`~/.zshrc`, `~/.config/starship.toml`, `~/.config/ghostty/config`, `~/.config/rex/init.lua`)
 4. Configure delta as the git pager (via `git config --global include.path`)
 5. Back up any existing configs with a timestamped `.backup.*` suffix
 6. Create `~/.zshrc.local` for machine-specific secrets (not tracked in git)

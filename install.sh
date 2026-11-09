@@ -95,6 +95,7 @@ install_config() {
 install_config "$DOTFILES_DIR/configs/zshrc"       "$HOME/.zshrc"
 install_config "$DOTFILES_DIR/configs/starship.toml" "$HOME/.config/starship.toml"
 install_config "$DOTFILES_DIR/configs/ghostty"      "$HOME/.config/ghostty/config"
+install_config "$DOTFILES_DIR/configs/rex.lua"      "$HOME/.config/rex/init.lua"
 
 # ─── 5b. Delta (git pager) ───────────────────────────────────────────────────
 info "Installing delta git config..."
